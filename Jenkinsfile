@@ -1,10 +1,31 @@
 pipeline {
     agent any
     stages {
-        stage('Init') {
+        stage('Build') {
             steps {
-                echo 'Second Jenkins pipeline triggered!'
+                echo 'Building the project...'
             }
+        }
+        stage('Test') {
+            steps {
+                echo 'Running tests...'
+            }
+        }
+    }
+    post {
+        success {
+            slackSend (
+                channel: '#all-spsnet-internee',
+                message: "✅ *Build Successful* - ${env.JOB_NAME} [#${env.BUILD_NUMBER}]",
+                tokenCredentialId: 'slack-webhook'
+            )
+        }
+        failure {
+            slackSend (
+                channel: '#all-spsnet-internee',
+                message: "❌ *Build Failed* - ${env.JOB_NAME} [#${env.BUILD_NUMBER}]",
+                tokenCredentialId: 'slack-webhook'
+            )
         }
     }
 }
