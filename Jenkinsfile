@@ -29,3 +29,5 @@ pipeline {
         }
     }
 }
+
+🔧 Added Slack notifications to Jenkinsfile
