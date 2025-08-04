@@ -17,10 +17,10 @@ pipeline {
 
     post {
         success {
-            slackSend(channel: '#jenkins-notifications', message: "✅ Build Successful - ${env.JOB_NAME} [#${env.BUILD_NUMBER}]")
+            slackSend(channel: '#all-spsnet-internee', message: "✅ Build Successful - ${env.JOB_NAME} [#${env.BUILD_NUMBER}]")
         }
         failure {
-            slackSend(channel: '#jenkins-notifications', message: "❌ Build Failed - ${env.JOB_NAME} [#${env.BUILD_NUMBER}]")
+            slackSend(channel: '#all-spsnet-internee', message: "❌ Build Failed - ${env.JOB_NAME} [#${env.BUILD_NUMBER}]")
         }
     }
 }
